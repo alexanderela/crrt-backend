@@ -1,4 +1,4 @@
-const patientCases = require('')
+const patientCases = require('../../../caseSeedData.js');
 
 const createCase = (knex, patientCase) => {
   return knex('cases').insert({
