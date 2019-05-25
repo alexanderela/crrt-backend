@@ -1,4 +1,4 @@
-
+const patientCases = require('')
 
 const createCase = (knex, patientCase) => {
   return knex('cases').insert({
@@ -20,15 +20,15 @@ const createCase = (knex, patientCase) => {
   }, 'id');
 }
 
-
-
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('cases').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('cases').insert([
-      ]);
-    });
+    .then(() => {
+      let casePromises = [];
+        patientCases.forEach(patientCase => {
+          casePromises.push(createCase(knex, patientCase));
+        });
+        return Promise.all(casePromises);
+    })
+    .catch(error => console.log(`Error seeding data: ${error}`))
 };
