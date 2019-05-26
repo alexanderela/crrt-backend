@@ -11,13 +11,13 @@ exports.up = function(knex, Promise) {
   		table.integer('creatinineProductionRate');
   		table.integer('calciumProductionRate');
   		table.integer('filtrationFractionStarting');
-  		table.string('gender');
+  		table.text('gender');
   		table.decimal('usualWeight');
-  		table.string('historyOfPresentIllness');
-  		table.string('vitalSigns');
-  		table.string('medications');
-  		table.string('imaging');
-  		table.string('physicalExam');
+  		table.text('historyOfPresentIllness');
+  		table.text('vitalSigns');
+  		table.text('medications');
+  		table.text('imaging');
+  		table.text('physicalExam');
   		table.timestamps(true, true);
   	})
   ])
