@@ -13,7 +13,13 @@ app.use(express.static('public'));
 
 //Endpoints
 
-app.
+app.get('/api/v1/cases', (request, response) => {
+	database('cases').select()
+	.then(cases => response.status(200).json(cases))
+	.catch(error => response.status(500).json({
+		error: error.message
+	}));
+});
 
 app.use((request, response) => {
 	response.status(404).send('Sorry, the path you entered does not exist.');
