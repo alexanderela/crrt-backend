@@ -21,6 +21,19 @@ app.get('/api/v1/cases', (request, response) => {
 	}));
 });
 
+app.post('/api/v1/cases', (request, response) => {
+	const patientCase = request.body;
+
+	database('cases').insert(patientCase, 'id')
+		.then(caseIds => response.status(201).json({
+			id: caseIds[0],
+			message: `Case successfully created!`
+		}))
+		.catch(error => response.status(500).json({
+			error: error.message
+		}));
+});
+
 app.use((request, response) => {
 	response.status(404).send('Sorry, the path you entered does not exist.');
 });
