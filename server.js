@@ -78,6 +78,18 @@ app.patch('/api/v1/cases/:id', (request, response) => {
 		}));
 });
 
+app.delete('/api/v1/cases/:id', (request, response) => {
+	const { id } = request.params;
+	database('cases').where('id', id).delete()
+		.then(caseId => response.status(200).json({
+			id: id,
+			message: `Case ${id} has been deleted.`
+		}))
+		.catch(error => response.status(500).json({
+			error: `Error deleting case: ${error.message}`
+		}));
+});
+
 app.use((request, response) => {
 	response.status(404).send('Sorry, the path you entered does not exist.');
 });
