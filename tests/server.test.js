@@ -9,11 +9,11 @@ const configuration = require('./knexfile')[environment]
 const database = require('knex')(configuration)
 
 describe('server', () => {
-	describe('', () => {});
+	describe('GET /api/v1/cases', () => {});
 
-	describe('', () => {});
+	describe('POST /api/v1/cases', () => {});
 	
-	describe('', () => {});
+	describe('PATCH /api/v1/cases/:id', () => {});
 	
-	describe('', () => {});
+	describe('DELETE /api/v1/cases/:id', () => {});
 });
