@@ -25,19 +25,27 @@ describe('server', () => {
 	});
 
 	describe('GET /api/v1/cases', () => {
-		it('should return 200 status code on successful request', () => {});
-		it('should return 404 status code for route that does not exist', () => {});
-		it('should return 500 status code on unsuccessful request', () => {});
-		it('should return an array of cases', () => {});
+		it('should return 200 status code on successful request', done => {});
+		it('should return 404 status code for route that does not exist', done => {});
+		it('should return 500 status code on unsuccessful request', done => {});
+		it('should return an array of cases', done => {});
 	});
 
-	describe('POST /api/v1/cases', () => {});
+	describe('POST /api/v1/cases', () => {
+		it('should return 201 status code on successful request', done => {});
+		it('should return 415 status code for improper formatting', done => {});
+		it('should return 500 status code on unsuccessful request', done => {});
+	});
 	
-	describe('PATCH /api/v1/cases/:id', () => {});
+	describe('PATCH /api/v1/cases/:id', () => {
+		it('should return 204 status code on successful request', done => {});
+		it('should return 415 status code for improper formatting', done => {});
+		it('should return 500 status code on unsuccessful request', done => {});
+	});
 	
 	describe('DELETE /api/v1/cases/:id', () => {
-		it('', () => {});
-		it('', () => {});
+		it('', done => {});
+		it('', done => {});
 
 	});
 });

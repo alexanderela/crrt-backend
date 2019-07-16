@@ -59,7 +59,6 @@ app.patch('/api/v1/cases/:id', (request, response) => {
 	]) {
 		if(!newEntry[requiredParam]) {
 			missingProp = [...missingProp, requiredParam]
-
 		}
 		if(missingProp.length) {
 			return response.status(415).json({
