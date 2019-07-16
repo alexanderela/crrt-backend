@@ -24,11 +24,20 @@ describe('server', () => {
 			.then(() => done())
 	});
 
-	describe('GET /api/v1/cases', () => {});
+	describe('GET /api/v1/cases', () => {
+		it('should return 200 status code on successful request', () => {});
+		it('should return 404 status code for route that does not exist', () => {});
+		it('should return 500 status code on unsuccessful request', () => {});
+		it('should return an array of cases', () => {});
+	});
 
 	describe('POST /api/v1/cases', () => {});
 	
 	describe('PATCH /api/v1/cases/:id', () => {});
 	
-	describe('DELETE /api/v1/cases/:id', () => {});
+	describe('DELETE /api/v1/cases/:id', () => {
+		it('', () => {});
+		it('', () => {});
+
+	});
 });
