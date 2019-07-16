@@ -34,6 +34,7 @@ describe('server', () => {
 	describe('POST /api/v1/cases', () => {
 		it('should return 201 status code on successful request', done => {});
 		it('should return 415 status code for improper formatting', done => {});
+		it('should return 404 status code when id not found', done => {});
 		it('should return 500 status code on unsuccessful request', done => {});
 	});
 	
@@ -44,8 +45,7 @@ describe('server', () => {
 	});
 	
 	describe('DELETE /api/v1/cases/:id', () => {
-		it('', done => {});
-		it('', done => {});
-
+		it('should return 200 status code on successful request', done => {});
+		it('should return 500 status code on unsuccessful request', done => {});
 	});
 });
