@@ -8,6 +8,10 @@ const environment = process.env.NODE_ENV || 'development'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 
+const { patientCases, caseStudyNew, caseStudyWrongDataType, caseStudyMissingData } = require('../caseTestData.js');
+
+// const testCases = require('../caseTestData.js');
+
 chai.use(chaiHttp)
 
 describe('server', () => {
@@ -60,11 +64,39 @@ describe('server', () => {
 	});
 
 	describe('POST /api/v1/cases', () => {
-		it.skip('should return 201 status code on successful request', done => {});
+		it('should post a new case', done => {
+			chai.request(app)
+				.post('/api/v1/cases')
+				.send(caseStudyNew)
+				.end((error, response) => {
+					expect(response.body.id).to.equal(3)
+					done();
+				});
+		});
+
+		it('should return 201 status code on successful request', done => {
+			chai.request(app)
+				.post('/api/v1/cases')
+				.send(caseStudyNew)
+				.end((error, response) => {
+					expect(response).to.have.status(201)
+					done();
+				});
+		});
 		
-		it.skip('should return 415 status code for improper formatting', done => {});
+		it.skip('should return 415 status code for improper formatting', done => {
+			chai.request(app)
+				.post('/api/v1/cases')
+				.send(caseStudyMissingData)
+				.end((error, response) => {
+					expect(response).to.have.status(415)
+					done();
+				});
+		});
 		
-		it.skip('should return 404 status code when id not found', done => {});
+		it.skip('should return 404 status code when id not found', done => {
+			
+		});
 	});
 	
 	describe('PATCH /api/v1/cases/:id', () => {
