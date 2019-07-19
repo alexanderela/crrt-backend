@@ -85,10 +85,6 @@ describe('server', () => {
 					done();
 				});
 		});
-		
-		it.skip('should return 404 status code when id not found', done => {
-			
-		});
 	});
 	
 	describe('PATCH /api/v1/cases/:id', () => {
