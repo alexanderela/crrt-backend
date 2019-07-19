@@ -24,6 +24,31 @@ app.get('/api/v1/cases', (request, response) => {
 app.post('/api/v1/cases', (request, response) => {
 	const patientCase = request.body;
 
+
+	for(let requiredParam of [
+		"sodiumProductionRate",
+    "potassiumProductionRate",
+    "chlorideProductionRate",
+    "bicarbonateProductionRate",
+    "BUNProductionRate",
+    "creatinineProductionRate",
+    "calciumProductionRate",
+    "filtrationFractionStarting",
+    "gender",
+    "usualWeight",
+    "historyOfPresentIllness",
+    "vitalSigns",
+    "medications",
+    "imaging",
+    "physicalExam"
+	]) {
+		if(patientCase[requiredParam] === undefined || patientCase[requiredParam] === null) {
+		 return response.status(415).json({
+        error: `You're missing the ${requiredParam} property.`
+      });
+		}
+	}
+
 	database('cases').insert(patientCase, 'id')
 		.then(caseIds => response.status(201).json({
 			id: caseIds[0],

@@ -54,6 +54,7 @@ describe('server', () => {
 					const pastMedicalHistory1 = JSON.parse(response.body[0].historyOfPresentIllness).pastMedicalHistory
 					const pastMedicalHistory2 = JSON.parse(response.body[1].historyOfPresentIllness).pastMedicalHistory
 
+					expect(response.body.length).to.not.equal(0)
 					expect(response.body[0].id).to.equal(1)
 					expect(pastMedicalHistory1[2]).to.equal('COPD')
 					expect(response.body[1].id).to.equal(2)
@@ -69,22 +70,13 @@ describe('server', () => {
 				.post('/api/v1/cases')
 				.send(caseStudyNew)
 				.end((error, response) => {
+					expect(response).to.have.status(201)
 					expect(response.body.id).to.equal(3)
 					done();
 				});
 		});
-
-		it('should return 201 status code on successful request', done => {
-			chai.request(app)
-				.post('/api/v1/cases')
-				.send(caseStudyNew)
-				.end((error, response) => {
-					expect(response).to.have.status(201)
-					done();
-				});
-		});
 		
-		it.skip('should return 415 status code for improper formatting', done => {
+		it('should return 415 status code for improper formatting', done => {
 			chai.request(app)
 				.post('/api/v1/cases')
 				.send(caseStudyMissingData)
