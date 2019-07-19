@@ -8,7 +8,7 @@ const environment = process.env.NODE_ENV || 'development'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 
-const { patientCases, caseStudyNew, caseStudyWrongDataType, caseStudyMissingData } = require('../caseTestData.js');
+const { caseStudies, caseStudyNew, caseStudyWrongDataType, caseStudyMissingData } = require('../caseTestData.js');
 
 // const testCases = require('../caseTestData.js');
 
@@ -88,7 +88,18 @@ describe('server', () => {
 	});
 	
 	describe('PATCH /api/v1/cases/:id', () => {
-		it.skip('should return 204 status code on successful request', done => {});
+		it.skip('should return 204 status code on successful request', done => {
+      let expected = `Case 1 has been updated`
+
+			chai.request(app)
+				.patch('/api/v1/cases/1')
+				.send({ sodiumProductionRate: 1 })
+				.end((error, response) => {
+					expect(response).to.have.status(204)
+					expect(response.body.message).to.equal(expected)
+					done();
+				});
+		});
 		
 		it.skip('should return 415 status code for improper formatting', done => {});
 	});

@@ -24,7 +24,6 @@ app.get('/api/v1/cases', (request, response) => {
 app.post('/api/v1/cases', (request, response) => {
 	const patientCase = request.body;
 
-
 	for(let requiredParam of [
 		"sodiumProductionRate",
     "potassiumProductionRate",
@@ -63,39 +62,10 @@ app.patch('/api/v1/cases/:id', (request, response) => {
 	const { id } = request.params;
 	const newEntry = request.body;
 
-	let missingProp = [];
-
-	for(let requiredParam of [
-		"sodiumProductionRate",
-    "potassiumProductionRate",
-    "chlorideProductionRate",
-    "bicarbonateProductionRate",
-    "BUNProductionRate",
-    "creatinineProductionRate",
-    "calciumProductionRate",
-    "filtrationFractionStarting",
-    "gender",
-    "usualWeight",
-    "historyOfPresentIllness",
-    "vitalSigns",
-    "medications",
-    "imaging",
-    "physicalExam"
-	]) {
-		if(!newEntry[requiredParam]) {
-			missingProp = [...missingProp, requiredParam]
-		}
-		if(missingProp.length) {
-			return response.status(415).json({
-				error: error.message
-			})
-		}
-	}
-
 	database('cases').where('id', id)
 		.update(newEntry)
-		.then(newEntry => {
-			response.status(204).json(newEntry)
+		.then(() => {
+			response.status(204).json();
 		})
 		.catch(error => response.status(500).json({
 			error: error.message
