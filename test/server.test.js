@@ -107,8 +107,8 @@ describe('server', () => {
 				});
 		});
 		
-		it.skip('should return 404 status code if ID is not found', done => {
-			const errorText = 'Station with id of 15 was not found';
+		it('should return 404 status code if ID is not found', done => {
+			const errorText = 'Sorry, the path you entered does not exist.';
 
 			chai.request(app)
 				.put('/api/v1/cases')
