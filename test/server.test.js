@@ -122,6 +122,13 @@ describe('server', () => {
 	});
 	
 	describe('DELETE /api/v1/cases/:id', () => {
-		it.skip('should return 200 status code on successful request', done => {});
+		it('should return 200 status code on successful request', done => {
+			chai.request(app)
+				.delete('/api/v1/cases/1')
+				.end((error, response) => {
+					expect(response).to.have.status(200)
+					done();
+				});
+		});
 	});
 });
