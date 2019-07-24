@@ -8,9 +8,15 @@ const environment = process.env.NODE_ENV || 'development'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 
-const { caseStudies, caseStudyNew, caseStudyWrongDataType, caseStudyMissingData } = require('../caseTestData.js');
+const { 
+			caseStudies, 
+			caseStudyNew, 
+			caseStudyWrongDataType, 
+			caseStudyMissingData, 
+		  caseStudyWrongId,
+		  caseStudyPutEdit
+			} = require('../caseTestData.js');
 
-// const testCases = require('../caseTestData.js');
 
 chai.use(chaiHttp)
 
@@ -86,22 +92,46 @@ describe('server', () => {
 				});
 		});
 	});
-	
-	describe('PATCH /api/v1/cases/:id', () => {
-		it.skip('should return 204 status code on successful request', done => {
-      let expected = `Case 1 has been updated`
+
+	describe('PUT /api/v1/cases/:id', () => {
+		it.skip('should return 202 status code on successful request', done => {
+      const expected = `Case 1 has been updated`
 
 			chai.request(app)
-				.patch('/api/v1/cases/1')
-				.send({ sodiumProductionRate: 1 })
+				.put('/api/v1/cases/1')
+				.send(caseStudyPutEdit)
 				.end((error, response) => {
-					expect(response).to.have.status(204)
+					expect(response).to.have.status(202)
 					expect(response.body.message).to.equal(expected)
 					done();
 				});
 		});
 		
-		it.skip('should return 415 status code for improper formatting', done => {});
+		it.skip('should return 404 status code if ID is not found', done => {
+			const errorText = 'Station with id of 15 was not found';
+
+			chai.request(app)
+				.put('/api/v1/cases')
+				.send(caseStudyWrongId)
+				.end((error, response) => {
+					expect(response).to.have.status(404)
+					expect(response.text).to.equal(errorText)
+					done();
+				});
+		});
+
+		it.skip('should return 415 status code for improper formatting', done => {
+			const errorText = 'No sodiumProductionRate provided';
+
+			chai.request(app)
+				.put('/api/v1/cases')
+				.send(caseStudyMissingData)
+				.end((error, response) => {
+					expect(response).to.have.status(415)
+					expect(response.text).to.equal(errorText)
+					done();
+				});
+		});			
 	});
 	
 	describe('DELETE /api/v1/cases/:id', () => {

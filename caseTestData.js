@@ -334,54 +334,136 @@
       }
     }
 
+ const caseStudyWrongId = {
+      "sodiumProductionRate": 0,
+      "potassiumProductionRate" : 4.3,
+      "chlorideProductionRate" : 0,
+      "bicarbonateProductionRate" : -20,
+      "BUNProductionRate" : 40,
+      "creatinineProductionRate" : 3,
+      "calciumProductionRate" : 0,
+      "filtrationFractionStarting": 0,
+      "gender" : "male",
+      "usualWeight" : 86.8,
+      "historyOfPresentIllness" : {
+        "overview" : [
+          "A 72 year old lady with a history of HTN, COPD, and DM is brought to the Emergency Department by ambulance after being found unresponsive by family members.",
+          "Upon arrival she is found to be in acute hypoxemic respiratory failure requiring emergent intubation.",
+          "Initial vital signs are temperature 39.1 C, HR 128, BP 78/53, RR 30.",
+          "A chest x-ray shows a left lower lobe infiltrate.",
+          "The patient is started on norepinephrine.",
+          "Creatinine is 2.7, up from 0.86 one month earlier.",
+          "Her urine output in the first 4 hours is 44 cc’s of urine.",
+          "The decision is made to start the patient on continuous renal replacement therapy. A 15 cm Mahurkar in the right internal jugular vein."
+        ],
+        "pastMedicalHistory" : [
+          "Hypertension",
+          "Insulin-dependent Diabetes Mellitus Type 2",
+          "COPD",
+          "CKD 3 (baseline creatinine 1.4 - 1.6)"
+        ],
+        "pastSurgicalHistory": [
+
+          "Abdominal hernia repair"
+        ],
+        "socialHistory": [
+          "Current smoker, 1/2 pack per day. Has been smoking since age 17.",
+          "No alcohol or other drug use.",
+          "Retired from work in retail."
+        ],
+        "familyHistory": [
+          "No family history of renal disease."
+        ]
+      },
+      "vitalSigns": {
+        "bloodPressureStarting": "78/53",
+        "respiratoryRateStarting": 30,
+        "temperatureStarting": 39.1,
+        "heartRateStarting": 128,
+        "weightStarting": 102
+      },
+      "medications": [],
+      "imaging" : [
+        "1500: Chest X-ray",
+        "The chest x-ray shows a left lower lobe consolidation consistent with infection. The remainder of the lungs are clear."
+      ],
+      "physicalExam": {
+        "general": "Appears acutely ill",
+        "ENT": "Intubated",
+        "heart": "Tachycardic, no murmurs, rubs, or gallops",
+        "lungs": "Decreased breath sounds in the left lower lobe",
+        "abdomen": "Non-distended",
+        "extremities": "No edema",
+        "psych": "Intubated and sedated"
+      }
+    }
+
+
+ const caseStudyPutEdit = {
+      "sodiumProductionRate": 0,
+      "potassiumProductionRate" : 4.3,
+      "chlorideProductionRate" : 0,
+      "bicarbonateProductionRate" : -20,
+      "BUNProductionRate" : 40,
+      "creatinineProductionRate" : 3,
+      "calciumProductionRate" : 0,
+      "filtrationFractionStarting": 0,
+      "gender" : "male",
+      "usualWeight" : 86.8,
+      "historyOfPresentIllness" : {
+        "overview" : [
+          "Test overview 1",
+          "Test overview 2",
+          "Test overview 3",
+        ],
+        "pastMedicalHistory" : [
+          "Hypertension",
+          "Insulin-dependent Diabetes Mellitus Type 2",
+          "COPD",
+          "CKD 3 (baseline creatinine 1.4 - 1.6)"
+        ],
+        "pastSurgicalHistory": [
+
+          "Abdominal hernia repair"
+        ],
+        "socialHistory": [
+          "Current smoker, 1/2 pack per day. Has been smoking since age 17.",
+          "No alcohol or other drug use.",
+          "Retired from work in retail."
+        ],
+        "familyHistory": [
+          "No family history of renal disease."
+        ]
+      },
+      "vitalSigns": {
+        "bloodPressureStarting": "78/53",
+        "respiratoryRateStarting": 30,
+        "temperatureStarting": 39.1,
+        "heartRateStarting": 128,
+        "weightStarting": 102
+      },
+      "medications": [],
+      "imaging" : [
+        "1500: Chest X-ray",
+        "The chest x-ray shows a left lower lobe consolidation consistent with infection. The remainder of the lungs are clear."
+      ],
+      "physicalExam": {
+        "general": "Appears acutely ill",
+        "ENT": "Intubated",
+        "heart": "Tachycardic, no murmurs, rubs, or gallops",
+        "lungs": "Decreased breath sounds in the left lower lobe",
+        "abdomen": "Non-distended",
+        "extremities": "No edema",
+        "psych": "Intubated and sedated"
+      }
+    }
+
+
   module.exports = {
-    caseStudies: caseStudies,
-    caseStudyNew: caseStudyNew,
-    caseStudyWrongDataType: caseStudyWrongDataType,
-    caseStudyMissingData: caseStudyMissingData
+    caseStudies,
+    caseStudyNew,
+    caseStudyWrongDataType,
+    caseStudyMissingData,
+    caseStudyWrongId,
+    caseStudyPutEdit
   }
-
-
-
-// app.patch('/api/v1/cases/:id', (request, response) => {
-//   const { id } = request.params;
-//   const newEntry = request.body;
-
-//   let missingProp = [];
-
-//   for(let requiredParam of [
-//     "sodiumProductionRate",
-//     "potassiumProductionRate",
-//     "chlorideProductionRate",
-//     "bicarbonateProductionRate",
-//     "BUNProductionRate",
-//     "creatinineProductionRate",
-//     "calciumProductionRate",
-//     "filtrationFractionStarting",
-//     "gender",
-//     "usualWeight",
-//     "historyOfPresentIllness",
-//     "vitalSigns",
-//     "medications",
-//     "imaging",
-//     "physicalExam"
-//   ]) {
-//     if(!newEntry[requiredParam]) {
-//       missingProp = [...missingProp, requiredParam]
-//     }
-//     if(missingProp.length) {
-//       return response.status(415).json({
-//         error: error.message
-//       })
-//     }
-//   }
-
-//   database('cases').where('id', id)
-//     .update(newEntry)
-//     .then(newEntry => {
-//       response.status(204).json(newEntry)
-//     })
-//     .catch(error => response.status(500).json({
-//       error: error.message
-//     }));
-// });

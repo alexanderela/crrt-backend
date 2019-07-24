@@ -58,18 +58,8 @@ app.post('/api/v1/cases', (request, response) => {
 		}));
 });
 
-app.patch('/api/v1/cases/:id', (request, response) => {
-	const { id } = request.params;
-	const newEntry = request.body;
+app.put('/api/v1/cases/:id', (request, response) => {
 
-	database('cases').where('id', id)
-		.update(newEntry)
-		.then(() => {
-			response.status(204).json();
-		})
-		.catch(error => response.status(500).json({
-			error: error.message
-		}));
 });
 
 app.delete('/api/v1/cases/:id', (request, response) => {
