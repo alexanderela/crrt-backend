@@ -106,29 +106,16 @@ describe('server', () => {
 					done();
 				});
 		});
-		
-		it('should return 404 status code if ID is not found', done => {
-			const errorText = 'Sorry, the path you entered does not exist.';
+
+		it('should return 415 status code for improper formatting', done => {
+			const errorText = `You're missing the sodiumProductionRate property.`;
 
 			chai.request(app)
-				.put('/api/v1/cases')
-				.send(caseStudyWrongId)
-				.end((error, response) => {
-					expect(response).to.have.status(404)
-					expect(response.text).to.equal(errorText)
-					done();
-				});
-		});
-
-		it.skip('should return 415 status code for improper formatting', done => {
-			const errorText = 'No sodiumProductionRate provided';
-
-			chai.request(app)
-				.put('/api/v1/cases')
+				.put('/api/v1/cases/1')
 				.send(caseStudyMissingData)
 				.end((error, response) => {
 					expect(response).to.have.status(415)
-					expect(response.text).to.equal(errorText)
+					expect(response.body.error).to.equal(errorText)
 					done();
 				});
 		});			

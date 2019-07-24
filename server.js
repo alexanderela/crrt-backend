@@ -62,9 +62,33 @@ app.put('/api/v1/cases/:id', (request, response) => {
 	const { id } = request.params;
 	const newEntry = request.body;
 
+	for(let requiredParam of [
+		"sodiumProductionRate",
+    "potassiumProductionRate",
+    "chlorideProductionRate",
+    "bicarbonateProductionRate",
+    "BUNProductionRate",
+    "creatinineProductionRate",
+    "calciumProductionRate",
+    "filtrationFractionStarting",
+    "gender",
+    "usualWeight",
+    "historyOfPresentIllness",
+    "vitalSigns",
+    "medications",
+    "imaging",
+    "physicalExam"
+	]) {
+		if(newEntry[requiredParam] === undefined || newEntry[requiredParam] === null) {
+		 return response.status(415).json({
+        error: `You're missing the ${requiredParam} property.`
+      });
+		}
+	}
+
 	database('cases').where('id', id)
 		.update(newEntry)
-		.then(() => {
+		.then(caseIds => {
 			response.status(202).json({
 				message: `Edit successful. Case with id of ${id} has been updated.`
 			});
