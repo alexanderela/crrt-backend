@@ -12,7 +12,6 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static('public'));
 
 //Endpoints
-
 app.get('/api/v1/cases', (request, response) => {
 	database('cases').select()
 	.then(cases => response.status(200).json(cases))
