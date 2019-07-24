@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- node
+services:
+- postgresql
+before_script:
+- psql -c 'CREATE DATABASE travis_test;' -U postgres
+notifications:
+  email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: cd8673ee-8a2b-4c81-927f-f4fa03af7168
+  app: crrt-backend
+  skip_cleanup: true
