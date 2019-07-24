@@ -59,7 +59,19 @@ app.post('/api/v1/cases', (request, response) => {
 });
 
 app.put('/api/v1/cases/:id', (request, response) => {
+	const { id } = request.params;
+	const newEntry = request.body;
 
+	database('cases').where('id', id)
+		.update(newEntry)
+		.then(() => {
+			response.status(202).json({
+				message: `Edit successful. Case with id of ${id} has been updated.`
+			});
+		})
+		.catch(error => response.status(500).json({
+			error: error.message
+		}));
 });
 
 app.delete('/api/v1/cases/:id', (request, response) => {

@@ -94,8 +94,8 @@ describe('server', () => {
 	});
 
 	describe('PUT /api/v1/cases/:id', () => {
-		it.skip('should return 202 status code on successful request', done => {
-      const expected = `Case 1 has been updated`
+		it('should return 202 status code on successful request', done => {
+      const expected = `Edit successful. Case with id of 1 has been updated.`
 
 			chai.request(app)
 				.put('/api/v1/cases/1')
