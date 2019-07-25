@@ -5,9 +5,64 @@
 		<link rel='stylesheet' type='text/css' href='styles.css'>
 	</head>
 	<body>
-		<h1>CRRT Simulator API</h1>
-		<p class='description-main'>
-			The CRRT Simulator API provides test cases for use with the CRRT Simulator.
-		</p>
+		<header>
+			<h1>CRRT Simulator API</h1>
+			<p class='description-main'>
+				The CRRT Simulator API provides test cases for use with the CRRT Simulator.
+			</p>
+			<h4>Example Images</h4>
+			<div class='image-examples-container'>
+
+			</div>
+		</header>
+		<section class='endpoint-documentation'>
+			<section class='endpoint-entry'>
+				<h3 class='endpoint-title'>GET cases</h3>
+				<p class='endpoint-instructions'>To get all cases, use the URL:</p>
+				<p class='url'>https://crrt-backend.herokuapp.com/api/v1/cases</p>
+				<h4 class='endpoint-example'>Example Response:</h4>
+				<p class='endpoint-description'>Endpoint will return an array of all existing cases.</p>
+				<pre>
+					<code>
+					</code>
+				</pre>
+			</section>
+
+			<section class='endpoint-entry'>
+				<h3 class='endpoint-title'>POST new case</h3>
+				<p class='endpoint-instructions'>To post a new case, use the URL:</p>
+				<p class='url'>https://crrt-backend.herokuapp.com/api/v1/cases</p>
+				<h4 class='endpoint-example'>Example Response:</h4>
+				<p class='endpoint-description'>Endpoint will return new case's ID and a message indicating its successful creation.</p>
+				<pre>
+					<code>
+					</code>
+				</pre>
+			</section>
+
+			<section class='endpoint-entry'>
+				<h3 class='endpoint-title'>PUT existing case</h3>
+				<p class='endpoint-instructions'>To put (edit) an existing case, use the URL:</p>
+				<p class='url'>https://crrt-backend.herokuapp.com/api/v1/cases/:id</p>
+				<h4 class='endpoint-example'>Example Response:</h4>
+				<p class='endpoint-description'>Endpoint will return a message indicating successful edit of specified case.</p>
+				<pre>
+					<code>
+					</code>
+				</pre>
+			</section>
+
+			<section class='endpoint-entry'>
+				<h3 class='endpoint-title'>DELETE existing case</h3>
+				<p class='endpoint-instructions'>To delete an existing case, use the URL:</p>
+				<p class='url'>https://crrt-backend.herokuapp.com/api/v1/cases/:id</p>
+				<h4 class='endpoint-example'>Example Response:</h4>
+				<p class='endpoint-description'>Endpoint will return specified case's ID and a message indicating its successful deletion.</p>
+				<pre>
+					<code>
+					</code>
+				</pre>
+			</section>
+		</section>
 	</body>
 </html>
