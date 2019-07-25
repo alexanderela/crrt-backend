@@ -1,9 +1,15 @@
 language: node_js
 node_js:
-  - "node"
+- node
 services:
-  - postgresql
+- postgresql
 before_script:
-  - psql -c 'CREATE DATABASE crrtcases_test;' -U postgres
+- psql -c 'CREATE DATABASE crrtcases_test;' -U postgres
 notifications:
   email: false
+deploy:
+  provider: heroku
+  api_key:
+    secure: nG7J3iPeZJ86SMyDpxa4tZuB7rWGLVY3gTFqSgWUxXvRDGorW2b5NijbzfN2xpnjqzJ97hRJYBje38AUpTycnuXSnH8zjU75HcGF2oC8BI+WthCHL/cziZdFbXcgrt38iw0A0xnGNFMu6J9/g+VzplAM9z6+3hhqaD+R3O3mAYzrvIbmR9fwse28A0ONf+92qK5g6snGAvRQ7x3lIc9/R5gnkrcNVTAbTJvcOneaeJn/DU2KPXIQXoQPeZH+SJhXMlr3OsEYC1wF38VKInkdPbgVm91qA8lMUIDv2ixB+I7TlcoGpajv2tOno7oNdlndg+G6+Mycmp1uSn/RKdtf6Mp6bUDGnmNRY5CbCN9SwP/JE5DE7nCG5Gt1wjeBTdcRwb1hjvy8+/f9JsLIf4R5RcaZiJ+/p7sjv0/APjJvQNZ2bzvJYLq+uVojJsL+CReoHFwI/JkEkQR70Gi9p3IIeIRYFnvEKipwpWK4eqyi2YsC0nzmv6j74BmdB9tms37JxKTmfE4iRHJC/81kyEFenUZq4ExF8vuNceoRtHxHfaMTcjDtloklvYo1fPvlKbThX8Y6BFNfYtD2idVD9bt7g16/DBCOpTiIJdP6JzznofwRh5l5f8OUzuft/UO9+XggVp5hJuLJMenQbEzR1ULch9dJYFwOlUoEJhmdEmgC6U8=
+  app: crrt-backend
+  skip_cleanup: true
