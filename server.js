@@ -110,7 +110,7 @@ app.delete('/api/v1/cases/:id', (request, response) => {
 });
 
 app.use((request, response) => {
-	response.status(404).send('Sorry, the path you entered does not exist.');
+	response.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 app.listen(app.get('port'), () => {
