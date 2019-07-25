@@ -8,8 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
-app.use(express.static('public'));
 
 //Endpoints
 app.get('/api/v1/cases', (request, response) => {
