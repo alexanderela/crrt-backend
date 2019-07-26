@@ -87,8 +87,9 @@ app.put('/api/v1/cases/:id', (request, response) => {
 
 	database('cases').where('id', id)
 		.update(newEntry)
-		.then(caseIds => {
+		.then(caseId => {
 			response.status(202).json({
+				id: caseId,
 				message: `Edit successful. Case with id of ${id} has been updated.`
 			});
 		})

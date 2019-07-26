@@ -39,7 +39,6 @@ describe('server', () => {
 			chai.request(app)
 				.get('/api/v1/cases')
 				.end((error, response) => {
-					console.log(response.body)
 					expect(response).to.have.status(200);
 					done();
 				});
@@ -103,6 +102,7 @@ describe('server', () => {
 				.send(caseStudyPutEdit)
 				.end((error, response) => {
 					expect(response).to.have.status(202)
+					expect(response.body.id).to.equal(1)
 					expect(response.body.message).to.equal(expected)
 					done();
 				});
