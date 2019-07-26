@@ -1,5 +1,3 @@
-# Pull Request Template
-
 ## Description:
 
 This PR addresses issue #`<NUMBER>`.
