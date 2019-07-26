@@ -1,1 +1,3 @@
+[![Build Status](https://travis-ci.org/alexanderela/crrt-backend.svg?branch=master)](https://travis-ci.org/alexanderela/crrt-backend)
+
 README coming soon...
