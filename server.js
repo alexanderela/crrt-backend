@@ -40,7 +40,7 @@ app.post('/api/v1/cases', (request, response) => {
     "imaging",
     "physicalExam"
 	]) {
-		if(patientCase[requiredParam] === undefined || patientCase[requiredParam] === null) {
+		if(patientCase[requiredParam] === undefined) {
 		 return response.status(415).json({
         error: `You're missing the ${requiredParam} property.`
       });
