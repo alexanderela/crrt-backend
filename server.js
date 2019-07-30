@@ -8,8 +8,8 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
-app.use(express.static('public'));
 
 //Endpoints
 app.get('/api/v1/cases', (request, response) => {
@@ -87,8 +87,9 @@ app.put('/api/v1/cases/:id', (request, response) => {
 
 	database('cases').where('id', id)
 		.update(newEntry)
-		.then(caseIds => {
+		.then(caseId => {
 			response.status(202).json({
+				id: caseId,
 				message: `Edit successful. Case with id of ${id} has been updated.`
 			});
 		})
@@ -110,7 +111,7 @@ app.delete('/api/v1/cases/:id', (request, response) => {
 });
 
 app.use((request, response) => {
-	response.status(404).send('Sorry, the path you entered does not exist.');
+	response.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 app.listen(app.get('port'), () => {

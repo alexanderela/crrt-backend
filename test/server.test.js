@@ -102,6 +102,7 @@ describe('server', () => {
 				.send(caseStudyPutEdit)
 				.end((error, response) => {
 					expect(response).to.have.status(202)
+					expect(response.body.id).to.equal(1)
 					expect(response.body.message).to.equal(expected)
 					done();
 				});
