@@ -140,6 +140,74 @@
         "extremities": "No edema",
         "psych": "Intubated and sedated"
       }
+    },
+    {
+      "sodiumProductionRate": 102,
+      "potassiumProductionRate" : 9,
+      "chlorideProductionRate" : 84,
+      "bicarbonateProductionRate" : 15,
+      "BUNProductionRate" : 29,
+      "creatinineProductionRate" : 1.4,
+      "calciumProductionRate" : 7.3,
+      "filtrationFractionStarting": 0,
+      "gender" : "male",
+      "usualWeight" : 65,
+      "historyOfPresentIllness" : {
+        "overview" : [
+          "62 year old man with a history of asthma and tobacco use is brought to the emergency department with shortness of breath.",
+	        "He was found to be in acute hypoxemic respiratory failure requiring emergent intubation.",
+	        "Initial vital signs are BP 80/54, HR 83, RR 30, temperature 36.3.",
+	        "A chest x-ray reveals diffuse patchy airspace disease, predominantly in the right upper lobe and mild pulmonary vascular congestion.", 
+	        "He was positive for influenza A and H1N1.  The patient is started on norepinephrine.",
+	        "Labs reveal a white blood cell count of 1,174 K/MM3 and creatinine of 1.4 mg/dL.  Serum sodium is 102 mEq/L and serum potassium is >10 mEq/L.  He has been anuric for the last 6 hours despite having a Foley catheter in place.",
+	        "A temporary dialysis catheter is placed in the right internal jugular vein.  He receives leukapheresis and is started on obinutuzumab chemotherapy.",
+	        "The decision is made to start the patient on continuous renal replacement therapy."
+        ],
+        "pastMedicalHistory" : [
+          "Asthma",
+          "Tobacco use"
+        ],
+        "pastSurgicalHistory": [
+          "none"
+        ],
+        "socialHistory": [
+          "Current smoker, 1 pack per day.  He has been smoking since age 25.",
+	        "Drinks 3-4 cans of beer nightly.  No illicit drug use.",
+	        "He works at a cellphone repair shop."
+        ],
+        "familyHistory": [
+          "No family history of renal disease or cancers."
+        ]
+      },
+      "vitalSigns": {
+        "bloodPressureStarting": "108/64",
+        "respiratoryRateStarting": 30,
+        "temperatureStarting": 36.8,
+        "heartRateStarting": 93,
+        "weightStarting": 66
+      },
+      "medications": [
+        "Piperacillin-tazobactam 3.375 g IV q8hours",
+	      "Vancomycin 1000 mg IV q12 hours",
+	      "Azithromycin 500 mg IV q24 hours",
+	      "Oseltamivir 75 mg NG q12 hours",
+	      "Famotidine 20 mg IV q12 hours",
+	      "Fentanyl 1000 mcg/100 mL NS continuous ***",
+	      "Propofol ***",
+	      "Norepinephrine ***"
+      ],
+      "imaging" : [
+        "CXR reveals mild pulmonary vascular congestion and diffuse patchy airspace disease, predominantly in the right upper lobe concerning for infection."
+      ],
+      "physicalExam": {
+        "general": "Appears acutely ill",
+        "ENT": "Intubated",
+        "heart": "No murmurs, rubs, or gallops",
+        "lungs": "Decreased breath sounds in the right upper lobe, diffuse expiratory wheezing",
+        "abdomen": "Non-distended",
+        "extremities": "No edema",
+        "psych": "Intubated and sedated"
+      }
     }
   ]
 
