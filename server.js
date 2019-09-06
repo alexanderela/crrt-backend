@@ -8,11 +8,10 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 app.set('port', process.env.PORT || 3000);
-app.use(express.static('public'));
 
 //Endpoints
-
 app.get('/api/v1/cases', (request, response) => {
 	database('cases').select()
 	.then(cases => response.status(200).json(cases))
@@ -23,22 +22,6 @@ app.get('/api/v1/cases', (request, response) => {
 
 app.post('/api/v1/cases', (request, response) => {
 	const patientCase = request.body;
-
-	database('cases').insert(patientCase, 'id')
-		.then(caseIds => response.status(201).json({
-			id: caseIds[0],
-			message: `Case successfully created!`
-		}))
-		.catch(error => response.status(500).json({
-			error: error.message
-		}));
-});
-
-app.patch('/api/v1/cases/:id', (request, response) => {
-	const { id } = request.params;
-	const newEntry = request.body;
-
-	let missingProp = [];
 
 	for(let requiredParam of [
 		"sodiumProductionRate",
@@ -57,21 +40,58 @@ app.patch('/api/v1/cases/:id', (request, response) => {
     "imaging",
     "physicalExam"
 	]) {
-		if(!newEntry[requiredParam]) {
-			missingProp = [...missingProp, requiredParam]
-
+		if(patientCase[requiredParam] === undefined) {
+		 return response.status(415).json({
+        error: `You're missing the ${requiredParam} property.`
+      });
 		}
-		if(missingProp.length) {
-			return response.status(415).json({
-				error: error.message
-			})
+	}
+
+	database('cases').insert(patientCase, 'id')
+		.then(caseIds => response.status(201).json({
+			id: caseIds[0],
+			message: `Case successfully created!`
+		}))
+		.catch(error => response.status(500).json({
+			error: error.message
+		}));
+});
+
+app.put('/api/v1/cases/:id', (request, response) => {
+	const { id } = request.params;
+	const newEntry = request.body;
+
+	for(let requiredParam of [
+		"sodiumProductionRate",
+    "potassiumProductionRate",
+    "chlorideProductionRate",
+    "bicarbonateProductionRate",
+    "BUNProductionRate",
+    "creatinineProductionRate",
+    "calciumProductionRate",
+    "filtrationFractionStarting",
+    "gender",
+    "usualWeight",
+    "historyOfPresentIllness",
+    "vitalSigns",
+    "medications",
+    "imaging",
+    "physicalExam"
+	]) {
+		if(newEntry[requiredParam] === undefined || newEntry[requiredParam] === null) {
+		 return response.status(415).json({
+        error: `You're missing the ${requiredParam} property.`
+      });
 		}
 	}
 
 	database('cases').where('id', id)
 		.update(newEntry)
-		.then(newEntry => {
-			response.status(204).json(newEntry)
+		.then(caseId => {
+			response.status(202).json({
+				id: caseId,
+				message: `Edit successful. Case with id of ${id} has been updated.`
+			});
 		})
 		.catch(error => response.status(500).json({
 			error: error.message
@@ -91,7 +111,7 @@ app.delete('/api/v1/cases/:id', (request, response) => {
 });
 
 app.use((request, response) => {
-	response.status(404).send('Sorry, the path you entered does not exist.');
+	response.status(404).sendFile(__dirname + '/public/404.html');
 });
 
 app.listen(app.get('port'), () => {
