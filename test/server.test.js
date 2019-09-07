@@ -59,6 +59,7 @@ describe('server', () => {
 				.end((error, response) => {
 					const pastMedicalHistory1 = JSON.parse(response.body[0].historyOfPresentIllness).pastMedicalHistory
 					const pastMedicalHistory2 = JSON.parse(response.body[1].historyOfPresentIllness).pastMedicalHistory
+					console.log(response.body[1].id)
 
 					expect(response.body.length).to.not.equal(0)
 					expect(response.body[0].id).to.equal(1)
