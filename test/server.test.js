@@ -59,7 +59,7 @@ describe('server', () => {
 				.end((error, response) => {
 					const pastMedicalHistory1 = JSON.parse(response.body[0].historyOfPresentIllness).pastMedicalHistory
 					const pastMedicalHistory2 = JSON.parse(response.body[1].historyOfPresentIllness).pastMedicalHistory
-
+					
 					expect(response.body.length).to.not.equal(0)
 					expect(response.body[0].id).to.equal(1)
 					expect(pastMedicalHistory1[2]).to.equal('COPD')
@@ -77,7 +77,7 @@ describe('server', () => {
 				.send(caseStudyNew)
 				.end((error, response) => {
 					expect(response).to.have.status(201)
-					expect(response.body.id).to.equal(3)
+					expect(response.body.id).to.equal(4)
 					done();
 				});
 		});
