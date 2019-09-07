@@ -77,7 +77,7 @@ describe('server', () => {
 				.send(caseStudyNew)
 				.end((error, response) => {
 					expect(response).to.have.status(201)
-					expect(response.body.id).to.equal(3)
+					expect(response.body.id).to.equal(4)
 					done();
 				});
 		});
