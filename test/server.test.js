@@ -70,7 +70,6 @@ describe("server", () => {
           expect(response.body.length).to.not.equal(0);
           expect(response.body[0].id).to.equal(1);
           expect(pastMedicalHistory1[2]).to.equal("COPD");
-          console.log(response.body);
           expect(response.body[1].id).to.equal(2);
           expect(pastMedicalHistory2[2]).to.equal("Chronic pancreatitis");
           done();
